@@ -1,17 +1,14 @@
 package com.spring.mvc.chap01;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 //어떤 요청들을 처리할지 공통 URL을 설계
 @RequestMapping("/spring/*")
 //이 클래스의 객체를 스프링이 관리하도록 빈을 등록
 @Controller // @Component을 포함하는 더 확장된 개념
-//new ControllerV1(); -> 스프링이 알아서 만들어서 주입해주고 생애주기를 관리해줌
+//new ControllerV1(); -> 스프링이 알아서 만들어서 주입해주고 주기를 관리해줌
 public class ControllerV1 {
 
     //세부요청들을 메서드를 통해 처리
@@ -31,7 +28,7 @@ public class ControllerV1 {
         return "chap01/food";
     }
     //==================== 요청 파라미터 읽기 (Query String parameter) ====================//
-    //== 1. HttpServletRequest 사용하기
+    //== 1. HttpServletRequest 사용하기 -> 잘안씀
     // --> ex) /spring/person?name=kim&age=30   이렇게 요청오면 서버에서 어떻게 읽어올 것인가?
 
     @RequestMapping("/people")
@@ -60,7 +57,42 @@ public class ControllerV1 {
         System.out.println("grade = "+grade);//grade = 1
         return "";
     }
+    
+    //==3. 커멘드 객체 이용하기 -> 객체까지 포장해줌
+    //==쿼리 스트링의 양이 너무 많은 경우 또는 연관성이 있을 경우
+    // ==> ex) /spring/order?oNum=20230419007-P&goods=구두&amount=30&
 
+    @RequestMapping("/order")
+    public String order(OrderRequestDTO dto){
+        //http://localhost:8181/spring/order?oNum=33&goods=%EC%83%81%ED%92%88%EA%B6%8C&amount=3&price=10000
+        System.out.println("dto = "+dto); //dto = OrderRequestDTO(oNum=33, goods=상품권, amount=3, price=10000)
+        //필요하면 getdto해서 쓰면 되겠죠!!
+        return "";
+    }
 
+    //==4. URL에 경로로 붙어있는 데이터 읽기
+    // ==> /spring/member/hong/107
+    //  hong이라는 유저의 107번 게시글을 읽고싶음
+//    @RequestMapping("/member/hong/107")
+    @RequestMapping("/member/{userName}/{bNo}")
+    public String member(
+            //@PathVariable : /뒤에 있는거 읽음, 생략 불가
+            @PathVariable String userName,
+            @PathVariable long bNo
+    ){
+        //http://localhost:8181/spring/member/kim/9999
+        System.out.println("userName = "+userName); //userName = kim
+        System.out.println("bNo = "+bNo);//bNo = 9999
+        return "";
+    }
 
+    //음식 선택 요청 처리
+    // food.jsp에서 <form action="spring/food-select" method="get
+//    @RequestMapping(value = "/food-select", method = RequestMethod.POST) //post만 받을 수 있음 / 아예 안쓰면 다 받을 수 있음
+    @PostMapping("/food-select") //post만 받을 수 있음
+    public String foodSelect(String foodName, String category){
+        System.out.println("foodName = "+foodName);
+        System.out.println("category = "+category);
+        return "";
+    }
 }

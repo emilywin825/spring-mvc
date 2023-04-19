@@ -7,11 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <h1>Jsp food 리스트</h1>
-        <ul>
-            <li>볶음밥</li>
-            <li>치킨</li>
-            <li>족발</li>
-        </ul>
+    <h1>food.jsp 리스트</h1>
+        <form action="/spring/food-select" method="get">
+            #음식명 : <input type="text" name="foodName"><br>
+            #음식 카테고리 : 
+            <select name="category">
+                <option value="KOREAN">한식</option>
+                <option value="WESTERN">양식</option>
+                <option value="CHINESE">중식</option>
+            </select>
+            <br>
+            <button type="submit">확인</button>
+        </form>
 </body>
 </html>
