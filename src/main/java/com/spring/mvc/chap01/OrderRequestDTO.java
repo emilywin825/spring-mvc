@@ -18,5 +18,4 @@ public class OrderRequestDTO {
     private String goods;// 상품명
     private int amount;// 주문수량
     private int price;// 상품가격
-    
 }
