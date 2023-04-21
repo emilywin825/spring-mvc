@@ -60,7 +60,7 @@
     <div class="wrap">
         <section class="score-main">
             <h1>${inform.name}님 성적 정보 수정하기!</h1>
-            <form action="/score/modify" method="post">
+         <form action="/score/modify" method="post">    <!-- post는 쿼리문 사용 못하니까 밑에서 hidden 타입 이용해서 정보 넘김  -->
                 <input type="hidden" name="stuNum" value="${inform.stuNum}">
                 <ul>
                     <li># 국어: <input type="text" name="kor" value="${inform.kor}"></li>
@@ -69,6 +69,7 @@
                 </ul>
                 <div id="btn-group">
                     <button type="submit">수정완료</button>
+                    <button type="button" onclick="hisory.back()">이전으로</button>
                 </div>
             </form>
         </section>

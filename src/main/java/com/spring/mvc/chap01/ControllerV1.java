@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/spring/*")
 //이 클래스의 객체를 스프링이 관리하도록 빈을 등록
 @Controller // @Component을 포함하는 더 확장된 개념
-//new ControllerV1(); -> 스프링이 알아서 만들어서 주입해주고 주기를 관리해줌
+//new ControllerV1(); ->이걸 스프링이 알아서 만들어서 주입해주고 주기를 관리해줌
 public class ControllerV1 {
 
     //세부요청들을 메서드를 통해 처리
@@ -27,10 +27,11 @@ public class ControllerV1 {
 
         return "chap01/food";
     }
-    //==================== 요청 파라미터 읽기 (Query String parameter) ====================//
+
+    //==================== <요청 파라미터 읽기 (Query String parameter)> ====================//
+
     //== 1. HttpServletRequest 사용하기 -> 잘안씀
     // --> ex) /spring/person?name=kim&age=30   이렇게 요청오면 서버에서 어떻게 읽어올 것인가?
-
     @RequestMapping("/people")
     public String person(HttpServletRequest request){
         String name = request.getParameter("name");
@@ -58,10 +59,9 @@ public class ControllerV1 {
         return "";
     }
     
-    //==3. 커멘드 객체 이용하기 -> 객체까지 포장해줌
+    //==3. 커멘드 객체(OrderRequestDTO) 이용하기 -> 객체까지 포장해줌
     //==쿼리 스트링의 양이 너무 많은 경우 또는 연관성이 있을 경우
     // ==> ex) /spring/order?oNum=20230419007-P&goods=구두&amount=30&
-
     @RequestMapping("/order")
     public String order(OrderRequestDTO dto){
         //http://localhost:8181/spring/order?oNum=33&goods=%EC%83%81%ED%92%88%EA%B6%8C&amount=3&price=10000

@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>food.jsp 리스트</h1>
-        <form action="/spring/food-select" method="get">
+        <form action="/spring/food-select" method="post">
             #음식명 : <input type="text" name="foodName"><br>
             #음식 카테고리 : 
             <select name="category">

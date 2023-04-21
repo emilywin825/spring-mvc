@@ -2,11 +2,8 @@ package com.spring.mvc.chap04.repository;
 
 import com.spring.mvc.chap04.dto.ScoreRequestDTO;
 import com.spring.mvc.chap04.entity.Score;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-
 import java.util.*;
-import static com.spring.mvc.chap04.entity.Grade.*;
 import static java.util.Comparator.*;
 import static java.util.stream.Collectors.*;
 
@@ -72,7 +69,6 @@ public class ScoreRepositoryImpl implements ScoreRepository {
         }
         score.setStuNum(++sequence);
         scoreMap.put(score.getStuNum(), score);
-//        System.out.println(findAll());
         return true;
     }
 

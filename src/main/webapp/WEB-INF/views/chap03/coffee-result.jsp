@@ -9,17 +9,11 @@
 <title></title>
 </head>
 <body>
-
-
     <h1>주문 내역입니다.</h1>
-
     <ul>
         <li># 주문하신 메뉴: ${menu}</li>
         <li># 지불하실 가격: ${p}원</li>
     </ul>
-
-    
     <a href="/coffee/order">재주문하기</a>
-
 </body>
 </html>

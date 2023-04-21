@@ -10,8 +10,7 @@ package com.spring.mvc.chap03;
         - 요청 URL : /hw/s-login-check : POST
         - 포워딩 jsp파일 경로:  /WEB-INF/views/chap03/s-result.jsp
         - jsp에게 전달할 데이터: 로그인 성공여부, 아이디 없는경우, 비번 틀린경우
-
-     */
+*/
 
 
 import org.springframework.stereotype.Controller;
@@ -19,8 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.sql.PreparedStatement;
 
 
 @Controller

@@ -1,0 +1,24 @@
+body{
+    position: absolute;
+     left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.new-write{
+    height: 500px;
+    width: 500px;
+    border: 2px solid black;
+}
+
+.submit-btn{
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+     transform: translate(-50%,-50%);
+}
+
+.main-title{
+    text-align: center;
+}
+

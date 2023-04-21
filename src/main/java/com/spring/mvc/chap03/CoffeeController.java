@@ -24,7 +24,6 @@ public class CoffeeController {
      * @request - /coffee/result : POST
      * @response -"chap03/coffee-result"
     * */
-
     @PostMapping("/result")
     public String coffeeResult(String menu, @RequestParam(defaultValue = "3000")int price, Model model) { //@RequestParam(defaultValue = "3000") : 서버측에서 처리 -> 클라/서버측에서 둘 다 해줘야 함
         System.out.println("menu = "+menu);
@@ -33,5 +32,4 @@ public class CoffeeController {
         model.addAttribute("p",price);
         return "chap03/coffee-result";
     }
-
 }

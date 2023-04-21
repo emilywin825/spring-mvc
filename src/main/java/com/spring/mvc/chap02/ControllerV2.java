@@ -11,9 +11,9 @@ import java.util.List;
 //응답 데이터 처리
 @RequestMapping("/model") // /model로 시작하는 모든 URL처리
 @Controller
-public class ControllerV2 {
+//==================== <jsp 파일로 데이터를 보내주고 싶을 때> ====================
+public class ControllerV2 {//    이름정보와 취미목록 정보 보내주기
     // /model/hobbies : GET
-    //jsp 파일로 이름정보와 취미목록 정보를 보내주고 싶을 때
 
     //==1. Model 객체를 활용
     @GetMapping("/hobbies")
@@ -30,7 +30,7 @@ public class ControllerV2 {
     }
 
 
-    //== 2. ModelAndView 사용하기
+    //== 2. ModelAndView 객체 사용하기
     // /model/hobbies : GET
     // hobbies.jsp를 포워딩
 
@@ -53,7 +53,4 @@ public class ControllerV2 {
 
         return mv;
     }
-
-
-
 }
