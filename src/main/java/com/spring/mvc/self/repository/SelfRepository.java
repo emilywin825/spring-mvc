@@ -1,21 +1,20 @@
-package com.spring.mvc.chap05.repository;
+package com.spring.mvc.self.repository;
 
 import com.spring.mvc.chap05.entity.Board;
+import com.spring.mvc.self.entity.Self;
 
 import java.util.List;
 
-public interface BoardRepository {
-
+public interface SelfRepository {
     // 게시물 목록 조회
-    List<Board> findAll();
+    List<Self> findAll();
 
     // 게시물 상세 조회
-    Board findOne(int boardNo);
+    Self findOne(int boardNo);
 
     // 게시물 등록
-    boolean save(Board board);
+    boolean save(Self self);
 
     // 게시물 삭제
     boolean deleteByNo(int boardNo);
-
 }

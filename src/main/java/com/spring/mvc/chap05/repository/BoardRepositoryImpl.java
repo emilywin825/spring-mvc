@@ -54,4 +54,3 @@ public class BoardRepositoryImpl
         return true;
     }
 }
-

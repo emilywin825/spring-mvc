@@ -1,6 +1,9 @@
 package com.spring.mvc.chap05.service;
 
+import com.spring.mvc.chap05.dto.BoardDetailResponseDTO;
 import com.spring.mvc.chap05.dto.BoardListResponseDTO;
+import com.spring.mvc.chap05.dto.BoardWriteRequestDTO;
+import com.spring.mvc.chap05.entity.Board;
 import com.spring.mvc.chap05.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,13 +25,26 @@ public class BoardService {
 
         return boardRepository.findAll()
                 .stream()
-                .map(BoardListResponseDTO::new)
+                .map(board -> new BoardListResponseDTO(board))
                 .collect(toList())
                 ;
     }
 
-    //목록 삭제
-    public void remove(){
+    // 글 등록 중간처리
+    public boolean register(BoardWriteRequestDTO dto) {
+        return boardRepository.save(new Board(dto));
+    }
 
+    public boolean delete(int bno) {
+        return boardRepository.deleteByNo(bno);
+    }
+
+    public BoardDetailResponseDTO getDetail(int bno) {
+
+        Board board = boardRepository.findOne(bno);
+        // 조회수 상승 처리
+        board.setViewCount(board.getViewCount() + 1);
+
+        return new BoardDetailResponseDTO(board);
     }
 }

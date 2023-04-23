@@ -3,21 +3,15 @@ package com.spring.mvc.chap04.controller;
 import com.spring.mvc.chap04.dto.ScoreListResponseDTO;
 import com.spring.mvc.chap04.dto.ScoreRequestDTO;
 import com.spring.mvc.chap04.entity.Score;
-import com.spring.mvc.chap04.repository.ScoreRepository;
-import com.spring.mvc.chap04.repository.ScoreRepositoryImpl;
 import com.spring.mvc.chap04.service.ScoreService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 /**
@@ -95,14 +89,14 @@ public class ScoreController {
     public String remove(int stuNum) { // = @RequestMapping int stuNum
         System.out.println("/score/remove : GET");
 
-//        repository.deleteByStuNum(stuNum); ->ScoreService클래스의 delte()가 수행하므로써 repository에 대한 의존성 제거
+//      repository.deleteByStuNum(stuNum); ->ScoreService클래스의 delte()가 수행하므로써 repository에 대한 의존성 제거
         scoreService.delte(stuNum);
         return "redirect:/score/list";
     }
 
-    // *   4. 성적정보 상세 조회 요청
+    // *  4. 성적정보 상세 조회 요청
     @GetMapping("/detail")
-    public String detail(@RequestParam(required = true) int stuNum, Model model) {
+    public String detail(@RequestParam(required = true) int stuNum, Model model) { //@RequestParam(required = true : stuNum 안들어오면 에러
         System.out.println("/score/detail");
         retrieve(stuNum, model);
         return "chap04/score-detail";
@@ -117,7 +111,7 @@ public class ScoreController {
     }
 
     private void retrieve(int stuNum, Model model) {
-//        Score inform = repository.findByStuNum(stuNum); // -> 밑의 scoreService 클래스가 대신하므로 repository에 대한 의존성 제거
+//      Score inform = repository.findByStuNum(stuNum); // -> 밑의 scoreService 클래스가 대신하므로 repository에 대한 의존성 제거
         Score score = scoreService.retrieve(stuNum);
         model.addAttribute("inform", score);
     }

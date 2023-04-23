@@ -1,0 +1,73 @@
+*{
+    font-family: 'DungGeunMo-Regular', sans-serif;
+    box-sizing: border-box;
+}
+
+#wrap {
+    width: 60%;
+    margin: 100px auto;
+}
+
+body{
+    background:#F5F5F5;
+}
+
+.form-container {
+    width: 500px;
+    margin: auto;
+    padding: 5px 20px 20px 20px;
+    background:#B6BFC5;
+    font-size: 18px;
+}
+
+.form-container h1{
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    background:#01027B;
+    color: #ffffff;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+input[type="text"],
+textarea {
+    font-size: 18px;
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 3px solid;
+    border-color: black white white black;
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+textarea {
+    resize: none;
+    height: 200px;
+}
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+button {
+    font-size: 20px;
+    padding: 10px 20px;
+    border:3px solid;
+    border-color:white black black white ;
+    margin-right: 10px;
+    background-color: #B6BFC5;
+    color: black;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #3d8b40;
+}
+button.list-btn:hover {
+    background: #e61e8c93;
+}

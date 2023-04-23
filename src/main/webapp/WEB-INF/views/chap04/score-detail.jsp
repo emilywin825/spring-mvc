@@ -17,7 +17,7 @@
     <li>#평균 : ${inform.average} 점</li>
     <li>#학점 : ${inform.grade} 점</li>
     <a href="/score/list ">목록</a>
-    <a href="/score/modify?stuNum=${inform.stuNum} ">수정</a>
+    <a href="/score/modify?stuNum=${inform.stuNum}">수정</a>
 
     <script>
         // const average = +'${inform.average}';

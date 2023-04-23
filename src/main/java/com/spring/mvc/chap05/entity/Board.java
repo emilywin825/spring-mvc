@@ -1,5 +1,6 @@
 package com.spring.mvc.chap05.entity;
 
+import com.spring.mvc.chap05.dto.BoardWriteRequestDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -20,6 +21,12 @@ public class Board {
         this.boardNo = boardNo;
         this.title = title;
         this.content = content;
+        this.regDateTime = LocalDateTime.now();
+    }
+
+    public Board(BoardWriteRequestDTO dto) {
+        this.title = dto.getTitle();
+        this.content = dto.getContent();
         this.regDateTime = LocalDateTime.now();
     }
 }
