@@ -48,9 +48,17 @@
                     ${s.shortContent}
                 </div>
             </div>
+            
+            <!-- 취소 버튼 -->
+        <div class="cancel-btn">
+            <div class="btn-bg">x</div>
+        </div>
+        
         </c:forEach>
     </div>
         
+
+
     </div>
 
 

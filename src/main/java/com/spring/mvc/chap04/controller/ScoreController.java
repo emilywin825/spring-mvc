@@ -4,6 +4,7 @@ import com.spring.mvc.chap04.dto.ScoreListResponseDTO;
 import com.spring.mvc.chap04.dto.ScoreRequestDTO;
 import com.spring.mvc.chap04.entity.Score;
 import com.spring.mvc.chap04.service.ScoreService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +33,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/score")
-//@AllArgsConstructor : 모든 필드를 초기화하는 생성자
+//@AllArgsConstructor //: 모든 필드를 초기화하는 생성자
 @RequiredArgsConstructor //final 필드만 초기화하는 생성자
 public class ScoreController {
 

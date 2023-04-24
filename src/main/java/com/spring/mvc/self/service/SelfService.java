@@ -29,11 +29,9 @@ public class SelfService {
     }
 
     public ResponseDTO findOne(int boardNo){
-
         Self one = selfRepository.findOne(boardNo);
         int viewCount=one.getViewCount();
         one.setViewCount(++viewCount);
         return new ResponseDTO(one);
     }
-
 }
