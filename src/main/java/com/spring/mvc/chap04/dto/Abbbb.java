@@ -1,3 +1,4 @@
+/*
 package com.spring.mvc.chap04.dto;
 
 import com.spring.mvc.chap04.entity.Score;
@@ -20,3 +21,4 @@ public class Abbbb {
         System.out.println("all = " + all);
     }
 }
+*/

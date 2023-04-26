@@ -7,7 +7,7 @@ import java.util.*;
 import static java.util.Comparator.*;
 import static java.util.stream.Collectors.*;
 
-@Repository //스프링 빈 등록 : 객체 생성의 제어권을 스프링에게 위임 = 제어의 역전
+@Repository("memory") //스프링 빈 등록 : 객체 생성의 제어권을 스프링에게 위임 = 제어의 역전
 //@Component보다 조금 더 명시적으로 저장소임을 알려줌
 public class ScoreRepositoryImpl implements ScoreRepository {
 

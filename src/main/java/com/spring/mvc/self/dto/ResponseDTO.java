@@ -17,6 +17,7 @@ public class ResponseDTO {
 
     public ResponseDTO(Self self){
         this.boardNo= self.getBoardNo();
+        System.out.println("this.boardNo="+this.boardNo);
         this.shortTitle= ShortTitle(self.getTitle());
         this.shortContent= ShortContent(self.getContent());
         this.date=TimeFormat(self.getRegDateTime());

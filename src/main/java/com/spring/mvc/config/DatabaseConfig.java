@@ -4,7 +4,6 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import javax.sql.DataSource;
 
 @Configuration
@@ -14,7 +13,7 @@ public class DatabaseConfig {
     // USERNAME : DB 계정명
     // PASSWORD : DB password
     // DRIVER CLASS : DBMS마다 설치한 커넥터 드라이버
-    
+
     //커넥션 풀 설정
     // : DB 접속시 사용하는 리소스를 관리하는 프로그램
 
@@ -29,6 +28,12 @@ public class DatabaseConfig {
 //        config.setDriverClassName("org.mariadb.jdbc.Driver");
 //
 //        return new HikariDataSource(config);
+// }
+/*    @Bean
+//SpringBoot 안쓰면 우리가 설정 해줘야함 - DatabaseConfig클래스에
+    public JdbcTemplate jdbcTemplate() {
+        return new JdbcTemplate(dataSource);
+    }*/
 
 
     }

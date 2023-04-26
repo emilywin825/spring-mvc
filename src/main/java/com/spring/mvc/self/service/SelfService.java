@@ -34,4 +34,8 @@ public class SelfService {
         one.setViewCount(++viewCount);
         return new ResponseDTO(one);
     }
+
+    public boolean modify(RequestDTO dto){
+        return selfRepository.modify(dto);
+    }
 }

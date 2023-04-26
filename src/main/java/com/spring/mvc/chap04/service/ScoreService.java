@@ -1,28 +1,31 @@
 package com.spring.mvc.chap04.service;
 
 
-import com.spring.mvc.chap04.controller.ScoreController;
 import com.spring.mvc.chap04.dto.ScoreListResponseDTO;
 import com.spring.mvc.chap04.dto.ScoreRequestDTO;
 import com.spring.mvc.chap04.entity.Score;
 import com.spring.mvc.chap04.repository.ScoreRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.stream.Collectors;
 
 //컨트롤러와 레파지토리 사이에서 비즈니스 로직 처리
 //ex) 트랜잭션 처리, 예외처리, dto 변환 처리
 
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Service //빈 등록
-public class ScoreService {
+public class ScoreService { //메모리 저장에서 db저장으로 바껴도 다른곳 안 고치고 여기만 고치면 됨 -> 개방폐쇠원칙
     //원래같으면 생성자 주입 받아야 하므로
      //생성자 만들고 @AutoWired 해야하는데 생성자 하나면 @AutoWired안해도 되고 롬복으로 생성자 만들었으므로 끝
     private final ScoreRepository scoreRepository;
-    
+
+    @Autowired
+    public ScoreService(@Qualifier("jdbc")ScoreRepository scoreRepository) {
+        this.scoreRepository = scoreRepository;
+    }
     //목록조회
     /*
     * 컨트롤러는 데이터베이스를 통해 성적정보 리스트르 가져오길 원함.

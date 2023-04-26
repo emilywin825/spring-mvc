@@ -1,6 +1,8 @@
 package com.spring.mvc.self.repository;
 
 import com.spring.mvc.chap05.entity.Board;
+import com.spring.mvc.self.dto.RequestDTO;
+import com.spring.mvc.self.dto.ResponseDTO;
 import com.spring.mvc.self.dto.SelfDetailDTO;
 import com.spring.mvc.self.entity.Self;
 import org.springframework.stereotype.Repository;
@@ -20,13 +22,13 @@ public class SelfRepositoryImpl implements SelfRepository{
         map=new HashMap<>();
         Self s1=new Self(++sequence,"title1","content1");
         Self s2=new Self(++sequence,"title2","content2");
-        map.put(++sequence,s1);
-        map.put(++sequence,s2);
+        map.put(s1.getBoardNo(),s1);
+        map.put(s2.getBoardNo(),s2);
     }
     @Override
     public List<Self> findAll() { //목록조회
         List<Self> list=map.values()
-                .stream().sorted(comparing((Self self) -> self.getBoardNo()).reversed())
+                .stream().sorted(comparing(Self::getBoardNo).reversed())
                 .collect(toList());
         return list;
     }
@@ -46,5 +48,13 @@ public class SelfRepositoryImpl implements SelfRepository{
     @Override
     public boolean deleteByNo(int boardNo) {  // 게시물 삭제
         return false;
+    }
+
+    @Override
+    public boolean modify(RequestDTO dto) {
+        Self self = map.get(dto.getBoardNo());
+        self.setTitle(dto.getTitle());
+        self.setContent(dto.getContent());
+        return true;
     }
 }

@@ -53,4 +53,6 @@ public class BoardRepositoryImpl
         boardMap.remove(boardNo);
         return true;
     }
+
+
 }

@@ -33,7 +33,7 @@
 
     <div class="card-container">
         <c:forEach var="s" items="${sList}">
-            <div class="card-wrapper">
+            <div class="card-wrapper" data-bno="${s.boardNo}">
                 <div class="card-title-wrapper">
                     <div class="title">
                         ${s.shortTitle}
@@ -47,13 +47,11 @@
                 <div class="content">
                     ${s.shortContent}
                 </div>
+                    <!-- 취소 버튼 -->
+                <div class="cancel-btn">
+                    <button class="btn-bg">x</button>
+                </div>
             </div>
-            
-            <!-- 취소 버튼 -->
-        <div class="cancel-btn">
-            <div class="btn-bg">x</div>
-        </div>
-        
         </c:forEach>
     </div>
         
@@ -70,8 +68,11 @@
         })
 
         const $list=document.querySelector(".card-container");
+        const bno= document.querySelector('.card-wrapper').dataset.bno;
         $list.addEventListener('click',e=>{
-            window.location.href = '/self/detail';
+            console.log(bno);
+            window.location.href = '/self/detail?boardNo='+bno;
+            
         })
 
     </script>

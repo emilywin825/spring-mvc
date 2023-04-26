@@ -9,4 +9,5 @@ import lombok.*;
 public class RequestDTO {
     private String title;
     private String content;
+    private int boardNo;
 }

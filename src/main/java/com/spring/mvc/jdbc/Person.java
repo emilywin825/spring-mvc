@@ -5,6 +5,9 @@ package com.spring.mvc.jdbc;
 
 import lombok.*;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /*<person 테이블>
 create table person (
     id int(10) auto_increment,
@@ -21,4 +24,10 @@ public class Person { //여기에 담아서 insert/ db가 select한거 여기 �
     private long id;
     private String personName;
     private int personAge;
+
+    public Person(ResultSet rs) throws SQLException {
+        this.id=rs.getLong("id");
+        this.personName=rs.getString("person_name");
+        this.personAge= Integer.parseInt("person_age");
+    }
 }

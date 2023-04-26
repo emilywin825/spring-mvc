@@ -24,15 +24,15 @@
     
         <div id="wrap"class="form-container">
            <h1>MJ's 게시판 글쓰기</h1> 
-           <form action="/self/write" method="post">
-            <input type="hidden">
+           <form action="/self/list" method="post">
+            <input type="hidden" name="boardNo" value="${sList.boardNo}">
                 <label for="title">제목</label>
-                <input type="text" id="title" name="title" required>
+                <input type="text" id="title" name="title" value="${sList.shortTitle}" required>
                 <label for="content">내용</label>
-                <textarea id="content" name="content" maxlength="200" required></textarea>
+                <textarea id="content" name="content" maxlength="200" required>${sList.shortContent}</textarea>
                 <div class="buttons">
                     <button class="list-btn" type="button" onclick="window.location.href='/self/list'">목록</button>
-                    <button type="submit">글쓰기</button>
+                    <button type="submit">수정하기</button>
                 </div>
             </form>
         </div>

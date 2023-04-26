@@ -3,6 +3,9 @@ package com.spring.mvc.chap04.entity;
 import com.spring.mvc.chap04.dto.ScoreRequestDTO;
 import lombok.*;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 @Setter @Getter
 @ToString @EqualsAndHashCode
 @NoArgsConstructor
@@ -22,7 +25,18 @@ import lombok.*;
             changeScore(dto);
         }
 
-        public void changeScore(ScoreRequestDTO dto) {
+    public Score(ResultSet rs) throws SQLException {
+        this.stuNum=rs.getInt("stu_num");
+        this.name=rs.getString("stu_name"); // stu_name : db의 칼럼명과 같아야함
+        this.kor=rs.getInt("kor");
+        this.eng=rs.getInt("eng");
+        this.math=rs.getInt("math");
+        this.total=rs.getInt("total");
+        this.average=rs.getDouble("average");
+        this.grade= Grade.valueOf(rs.getString("grade")); //enum이므로 valueof 이용해 타입변환
+    }
+
+    public void changeScore(ScoreRequestDTO dto) {
             this.kor = dto.getKor();
             this.eng = dto.getEng();
             this.math = dto.getMath();

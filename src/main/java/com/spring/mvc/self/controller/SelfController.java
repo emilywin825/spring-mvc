@@ -27,6 +27,14 @@ public class SelfController {
         model.addAttribute("sList",responseDTOS);
         return "self/list";
     }
+
+    @PostMapping("/list")
+    public String list(RequestDTO dto){
+        System.out.println("/self/list : POST");
+        selfService.modify(dto);
+        return "redirect:/self/list";
+    }
+
     @GetMapping("/write")
     public String write(){
         System.out.println("/self/write : GET");
@@ -43,10 +51,16 @@ public class SelfController {
     @GetMapping("/detail")
     public String detail(int boardNo, Model model){
         System.out.println("/self/detail : GET");
+        System.out.println(boardNo);
         model.addAttribute("sList",selfService.findOne(boardNo));
-        return "/self/detail";
+        return "self/detail";
     }
 
+    @PostMapping("/delete")
+    public String delete(){
+        System.out.println("/self/delete : POST");
 
+        return "redirect:/self/list";
+    }
 
 }

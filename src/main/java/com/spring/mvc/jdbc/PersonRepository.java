@@ -1,8 +1,6 @@
 package com.spring.mvc.jdbc;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +29,7 @@ spring.datasource.driver-class-name=org.mariadb.jdbc.Driver*/
         
         //DB 연결
         //Connection : db 연결 정보를 가지며, SQL을 작성할 수 있는 statement 객체를 받을 수 있음
+        //데이터베이스 접속을 위한 Connection 객체 생성
         Connection conn = null;
 
         //트랜잭션 시작
@@ -174,8 +173,6 @@ spring.datasource.driver-class-name=org.mariadb.jdbc.Driver*/
             ResultSet rs = pstmt.executeQuery();
 
             // 포인터 커서로 첫번째 행부터 next호출시마다 매 다음 행을 지목
-
-
             while(rs.next()){
 
                 //위치한 커서에서 데이터 추출
@@ -185,9 +182,7 @@ spring.datasource.driver-class-name=org.mariadb.jdbc.Driver*/
 
                 Person p = new Person(id, name, age);
                 people.add(p);
-//                System.out.println("p = " + p);
             }
-
         }catch (Exception e){
             e.printStackTrace();
         }
