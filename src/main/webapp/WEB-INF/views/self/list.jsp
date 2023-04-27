@@ -34,19 +34,21 @@
     <div class="card-container">
         <c:forEach var="s" items="${sList}">
             <div class="card-wrapper" data-bno="${s.boardNo}">
-                <div class="card-title-wrapper">
-                    <div class="title">
-                        ${s.shortTitle}
+                <section>    
+                    <div class="card-title-wrapper">
+                        <div class="title">
+                            ${s.shortTitle}
+                        </div>
+                        <div class="time-view-wrapper">
+                            <div class="time">⏰ ${s.date}</div> 
+                            <div class="view-count">👁️‍🗨️${s.viewCount}</div>   
+                        </div>
                     </div>
-                    <div class="time-view-wrapper">
-                        <div class="time">⏰ ${s.date}</div> 
-                        <div class="view-count">👁️‍🗨️${s.viewCount}</div>   
+                
+                    <div class="content">
+                        ${s.shortContent}
                     </div>
-                </div>
-            
-                <div class="content">
-                    ${s.shortContent}
-                </div>
+            </section>
                     <!-- 취소 버튼 -->
                 <div class="cancel-btn">
                     <button class="btn-bg">x</button>
@@ -68,12 +70,20 @@
         })
 
         const $list=document.querySelector(".card-container");
-        const bno= document.querySelector('.card-wrapper').dataset.bno;
         $list.addEventListener('click',e=>{
-            console.log(bno);
-            window.location.href = '/self/detail?boardNo='+bno;
-            
+            console.log(e.target.closest(".card-wrapper").dataset.bno);
+        //     const bno= e.target.closest(".card-wrapper").dataset.bno;
+        //     window.location.href = '/self/detail?boardNo='+bno;
         })
+
+        const $cancelBtn=document.querySelector(".cancel-btn");
+
+
+        $cancelBtn.addEventListener('click',e=>{
+            console.log(e.target.closest(".card-wrapper").dataset.bno);
+
+        })
+
 
     </script>
 </body>

@@ -59,7 +59,6 @@ public class SelfController {
     @PostMapping("/delete")
     public String delete(){
         System.out.println("/self/delete : POST");
-
         return "redirect:/self/list";
     }
 

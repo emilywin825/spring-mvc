@@ -10,6 +10,7 @@ import java.sql.SQLException;
 @ToString @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
     public class Score {// db에 들어갈 모든 데이터를 담는 클래스
 
         private String name; // 학생 이름
@@ -42,7 +43,7 @@ import java.sql.SQLException;
             this.math = dto.getMath();
             calcTotalAndAvg(); // 총점, 평균 계산
             calcGrade(); // 학점 계산
-        }
+    }
 
         private void calcGrade() {
             if (average >= 90) {

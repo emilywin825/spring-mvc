@@ -4,6 +4,7 @@ package com.spring.mvc.chap04.service;
 import com.spring.mvc.chap04.dto.ScoreListResponseDTO;
 import com.spring.mvc.chap04.dto.ScoreRequestDTO;
 import com.spring.mvc.chap04.entity.Score;
+import com.spring.mvc.chap04.repository.ScoreMapper;
 import com.spring.mvc.chap04.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,10 +21,14 @@ import java.util.stream.Collectors;
 public class ScoreService { //메모리 저장에서 db저장으로 바껴도 다른곳 안 고치고 여기만 고치면 됨 -> 개방폐쇠원칙
     //원래같으면 생성자 주입 받아야 하므로
      //생성자 만들고 @AutoWired 해야하는데 생성자 하나면 @AutoWired안해도 되고 롬복으로 생성자 만들었으므로 끝
-    private final ScoreRepository scoreRepository;
+//    private final ScoreRepository scoreRepository;
+
+    private final ScoreMapper scoreRepository;
+
+
 
     @Autowired
-    public ScoreService(@Qualifier("jdbc")ScoreRepository scoreRepository) {
+    public ScoreService(ScoreMapper scoreRepository) {
         this.scoreRepository = scoreRepository;
     }
     //목록조회
@@ -36,9 +41,10 @@ public class ScoreService { //메모리 저장에서 db저장으로 바껴도 �
 
         // scoreList에서 원하는 정보만 추출하고 이름을 마스킹해서
         // 다시 DTO리스트로 변환해줘야 한다.
-        return scoreRepository.findAll(sort).stream()
-                .map(ScoreListResponseDTO::new)
-                .collect(Collectors.toList());
+//        return scoreRepository.findAll(sort).stream()
+//                .map(ScoreListResponseDTO::new)
+//                .collect(Collectors.toList());
+        return null;
     }
 
     //등록 중간처리

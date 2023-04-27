@@ -4,7 +4,6 @@ package com.spring.mvc.jdbc;
 //  db테이블의 컬럼과 1:1로 매칭되는 필드를 적어주세요
 
 import lombok.*;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -20,12 +19,13 @@ create table person (
 @ToString @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder // : 파라미터를 활용하여 빌더 패턴을 자동으로 생성
 public class Person { //여기에 담아서 insert/ db가 select한거 여기 담아서 전달.
     private long id;
     private String personName;
     private int personAge;
 
-    public Person(ResultSet rs) throws SQLException {
+    public Person(ResultSet rs) throws SQLException { //MyBatis쓰면 이거 필요 없음
         this.id=rs.getLong("id");
         this.personName=rs.getString("person_name");
         this.personAge= Integer.parseInt("person_age");
