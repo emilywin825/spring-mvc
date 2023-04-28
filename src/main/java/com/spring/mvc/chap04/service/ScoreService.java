@@ -23,8 +23,7 @@ public class ScoreService { //메모리 저장에서 db저장으로 바껴도 �
      //생성자 만들고 @AutoWired 해야하는데 생성자 하나면 @AutoWired안해도 되고 롬복으로 생성자 만들었으므로 끝
 //    private final ScoreRepository scoreRepository;
 
-    private final ScoreMapper scoreRepository;
-
+    private final ScoreMapper scoreRepository; //MyBatis
 
 
     @Autowired
@@ -41,10 +40,9 @@ public class ScoreService { //메모리 저장에서 db저장으로 바껴도 �
 
         // scoreList에서 원하는 정보만 추출하고 이름을 마스킹해서
         // 다시 DTO리스트로 변환해줘야 한다.
-//        return scoreRepository.findAll(sort).stream()
-//                .map(ScoreListResponseDTO::new)
-//                .collect(Collectors.toList());
-        return null;
+        return scoreRepository.findAll(sort).stream()
+                .map(ScoreListResponseDTO::new)
+                .collect(Collectors.toList());
     }
 
     //등록 중간처리
@@ -69,4 +67,5 @@ public class ScoreService { //메모리 저장에서 db저장으로 바껴도 �
         //만약에 스코어 전체d말고 몇개만 추리고 전후처리해서줘라
         return scoreRepository.findByStuNum(stuNum);
     }
+
 }

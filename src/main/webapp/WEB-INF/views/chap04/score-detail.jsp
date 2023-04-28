@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>${inform.name}</h1>님의 성적 정보
+    <h1>${inform.stuName}</h1>님의 성적 정보
     <li>#국어 : ${inform.kor} 점</li>
     <li>#영어 : ${inform.eng} 점</li>
     <li>#수학 : ${inform.math} 점</li>

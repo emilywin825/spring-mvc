@@ -18,7 +18,7 @@ public class ScoreListResponseDTO {
 
     public ScoreListResponseDTO(Score s) {
         this.stuNum=s.getStuNum();
-        this.maskingName=makeMaskingName(s.getName());
+        this.maskingName=makeMaskingName(s.getStuName());
         this.average=s.getAverage();
         this.grade=s.getGrade();
     }

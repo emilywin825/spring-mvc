@@ -49,7 +49,7 @@ public class ScoreRepositoryImpl implements ScoreRepository {
                 comparator = comparing(Score::getStuNum);
                 break;
             case "name":
-                comparator = comparing(Score::getName);
+                comparator = comparing(Score::getStuName);
                 break;
             case "avg":
                 comparator = comparing(Score::getAverage).reversed();

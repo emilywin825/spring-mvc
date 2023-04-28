@@ -59,7 +59,7 @@
 
     <div class="wrap">
         <section class="score-main">
-            <h1>${inform.name}님 성적 정보 수정하기!</h1>
+            <h1>${inform.stuName}님 성적 정보 수정하기!</h1>
          <form action="/score/modify" method="post">    <!-- post는 쿼리문 사용 못하니까 밑에서 hidden 타입 이용해서 정보 넘김  -->
                 <input type="hidden" name="stuNum" value="${inform.stuNum}">
                 <ul>

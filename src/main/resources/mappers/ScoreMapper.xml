@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace에는 인터페이스 풀 네임(패키지 경로 + 인터페이스 이름)-->
+<mapper namespace="com.spring.mvc.chap04.repository.ScoreMapper">
+    <!--  SQL 작성 : 추상메서드 별로 작성  id는 인터페이스 추상메소드 이름-->
+    <insert id="save">
+        INSERT INTO tbl_score (stu_name,kor,eng,math,total,average,grade)
+        VALUES(#{stuName},#{kor},#{eng},#{math},#{total},#{average},#{grade})
+    </insert>
+
+    <delete id="deleteByStuNum">
+        DELETE FROM tbl_score
+        WHERE stu_num=#{stuNum};
+    </delete>
+
+    <!--  mybatis-config.xml파일에서 자동 카멜케이스 to 스네이크 케이스 변환 설정해서 주석한거임 -->
+<!-- <resultMap id="score" type="com.spring.mvc.chap04.entity.Score">
+    <result property="stuName" column="stu_name"/>
+    <result property="stuNum" column="stu_num"/>
+</resultMap> -->
+
+    <select id="findByStuNum" resultType="score">
+        SELECT *
+        FROM tbl_score
+        WHERE stu_num=#{stuNum};
+    </select>
+
+<!-- resultMap 사용시 : <select id="findAll" resultMap="score">-->
+<!--    mybatis-config.xml파일의 설정 사용시-->
+    <select id="findAll" resultType="score">
+        SELECT * FROM tbl_score
+<!--   동적sql방식으로 sort 처리 :  findAll의 파라미터값과 맞추면됨 -->
+            <if test="sort == 'num'">
+                ORDER BY stu_num
+            </if>
+            <if test="sort == 'name'">
+                ORDER BY stu_name
+            </if>
+            <if test="sort == 'avg'">
+                ORDER BY average DESC
+            </if>
+        </select>
+
+    <update id="modify">
+        UPDATE tbl_score
+        SET kor=#{kor}, eng=#{eng}, math=#{math}
+        WHERE stu_num = #{stuNum}
+    </update>
+</mapper>

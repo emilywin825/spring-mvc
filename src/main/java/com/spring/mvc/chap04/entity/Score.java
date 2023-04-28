@@ -13,7 +13,7 @@ import java.sql.SQLException;
 @Builder
     public class Score {// db에 들어갈 모든 데이터를 담는 클래스
 
-        private String name; // 학생 이름
+        private String stuName; // 학생 이름
         private int kor, eng, math; // 국, 영, 수 점수
 
         private int stuNum; // 학번
@@ -22,13 +22,13 @@ import java.sql.SQLException;
         private Grade grade; // 학점
 
         public Score(ScoreRequestDTO dto) {
-            this.name = dto.getName();
+            this.stuName = dto.getName();
             changeScore(dto);
         }
 
     public Score(ResultSet rs) throws SQLException {
         this.stuNum=rs.getInt("stu_num");
-        this.name=rs.getString("stu_name"); // stu_name : db의 칼럼명과 같아야함
+        this.stuName =rs.getString("stu_name"); // stu_name : db의 칼럼명과 같아야함
         this.kor=rs.getInt("kor");
         this.eng=rs.getInt("eng");
         this.math=rs.getInt("math");

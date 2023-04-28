@@ -4,6 +4,16 @@ import com.spring.mvc.chap05.dto.BoardWriteRequestDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;
+/*
+* <테이블>
+* create table tbl_board(
+	board_no int(10) auto_increment primary key,
+	title varchar(80) not null,
+	content varchar(2000),
+	view_count int(10) default 0,
+	reg_date_tie DATETIME default current_timestamp -- 인서트 당시의 시간
+);
+* */
 
 @Setter @Getter
 @ToString @EqualsAndHashCode

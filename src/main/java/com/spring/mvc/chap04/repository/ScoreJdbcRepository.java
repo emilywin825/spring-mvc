@@ -1,7 +1,6 @@
 package com.spring.mvc.chap04.repository;
 
 import com.spring.mvc.chap04.entity.Score;
-import com.spring.mvc.chap04.service.ScoreService;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -63,7 +62,7 @@ public class ScoreJdbcRepository implements ScoreRepository{
                     " VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
-            pstmt.setString(1, score.getName());
+            pstmt.setString(1, score.getStuName());
             pstmt.setInt(2, score.getKor());
             pstmt.setInt(3, score.getEng());
             pstmt.setInt(4, score.getMath());

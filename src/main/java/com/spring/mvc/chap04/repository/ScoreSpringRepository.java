@@ -43,7 +43,7 @@ public class ScoreSpringRepository implements ScoreRepository {
                 " (stu_name, kor, eng, math, total, average, grade) " +
                 " VALUES (?, ?, ?, ?, ?, ?, ?)";
         return jdbcTemplate.update(sql,
-                score.getName(), score.getKor(),
+                score.getStuName(), score.getKor(),
                 score.getEng(), score.getMath(),
                 score.getTotal(), score.getAverage(),
                 String.valueOf(score.getGrade())) == 1;
