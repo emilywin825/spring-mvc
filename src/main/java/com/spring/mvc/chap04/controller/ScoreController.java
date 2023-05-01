@@ -30,7 +30,6 @@ import java.util.List;
  * - /score/detail; : GET
  */
 
-
 @Controller
 @RequestMapping("/score")
 //@AllArgsConstructor //: 모든 필드를 초기화하는 생성자
@@ -38,7 +37,7 @@ import java.util.List;
 public class ScoreController {
 
     //저장소에 의존해야 데이터를 받아서 클라에게 응답할 수 있음
-    //private final ScoreRepository repository; //scoreService 만들면서 컨트롤러가 repository에 대한 의존성 제거
+    //private final ScoreRepository repository; //scoreService 만들면서 컨트롤러의 repository에 대한 의존성 제거
     private final ScoreService scoreService; //ScoreService 클래스의 @Service를 이용해 빈 등록
 
     //만약에 클래스의 생성자가 단 1개라면 자동으로 @Autowired를 써줌 -> @Autowired 생략가능

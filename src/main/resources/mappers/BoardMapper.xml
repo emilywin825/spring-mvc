@@ -14,6 +14,11 @@
                 reg_date_time
         FROM tbl_board
         ORDER BY board_no DESC
+        LIMIT #{pageStart},#{amount}
+<!-- pageStart : 이거 getpageStart()
+#{amout} : 10개씩 모아보기, 20개씩 모아보기 이렇게 할 때 사용
+
+    -->
     </select>
 
     <select id="findOne" resultType="board">
@@ -30,6 +35,7 @@
         INSERT INTO tbl_board
             (title,content)
         values (#{title},#{content})
+<!-- title: 이거 getter        -->
     </insert>
 
     <delete id="deleteByNo">
@@ -43,8 +49,7 @@
         where board_no=#{boardNo};
     </update>
 
-
-
-
-
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM tbl_board;
+    </select>
 </mapper>

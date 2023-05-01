@@ -6,6 +6,7 @@ import com.spring.mvc.self.dto.ResponseDTO;
 import com.spring.mvc.self.dto.SelfDetailDTO;
 import com.spring.mvc.self.service.SelfService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+
 @Controller
 @RequestMapping("/self")
 @RequiredArgsConstructor
+@Slf4j
 public class SelfController {
     private final SelfService selfService;
 
@@ -57,8 +60,9 @@ public class SelfController {
     }
 
     @PostMapping("/delete")
-    public String delete(){
+    public String delete(int boardNo){
         System.out.println("/self/delete : POST");
+        log.info(String.valueOf(boardNo));
         return "redirect:/self/list";
     }
 

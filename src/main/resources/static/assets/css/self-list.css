@@ -106,3 +106,7 @@ body{
     text-align: center;
     line-height: 15px;
 }
+
+.card-wrapper .click-section{
+    height: 350px;
+}

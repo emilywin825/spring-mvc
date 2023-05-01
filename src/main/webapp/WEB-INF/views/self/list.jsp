@@ -34,7 +34,7 @@
     <div class="card-container">
         <c:forEach var="s" items="${sList}">
             <div class="card-wrapper" data-bno="${s.boardNo}">
-                <section>    
+                <section class="click-section">    
                     <div class="card-title-wrapper">
                         <div class="title">
                             ${s.shortTitle}
@@ -52,6 +52,7 @@
                     <!-- 취소 버튼 -->
                 <div class="cancel-btn">
                     <button class="btn-bg">x</button>
+                    <input type="hidden"  name="boardNo" value="${s.boardNo}">
                 </div>
             </div>
         </c:forEach>
@@ -69,11 +70,11 @@
             window.location.href = '/self/write';
         })
 
-        const $list=document.querySelector(".card-container");
+        const $list=document.querySelector(".click-section");
         $list.addEventListener('click',e=>{
             console.log(e.target.closest(".card-wrapper").dataset.bno);
-        //     const bno= e.target.closest(".card-wrapper").dataset.bno;
-        //     window.location.href = '/self/detail?boardNo='+bno;
+            const bno= e.target.closest(".card-wrapper").dataset.bno;
+            window.location.href = '/self/detail?boardNo='+bno;
         })
 
         const $cancelBtn=document.querySelector(".cancel-btn");
@@ -81,7 +82,7 @@
 
         $cancelBtn.addEventListener('click',e=>{
             console.log(e.target.closest(".card-wrapper").dataset.bno);
-
+            
         })
 
 
