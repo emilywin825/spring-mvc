@@ -4,6 +4,7 @@ import com.spring.mvc.self.dto.RequestDTO;
 import com.spring.mvc.self.dto.ResponseDTO;
 import com.spring.mvc.self.dto.SelfDetailDTO;
 import com.spring.mvc.self.entity.Self;
+import com.spring.mvc.self.repository.SelfMapper;
 import com.spring.mvc.self.repository.SelfRepositoryImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

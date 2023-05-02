@@ -13,6 +13,17 @@
                 view_count,
                 reg_date_time
         FROM tbl_board
+<!--   검색을 안하면 Search 클래스의 기본생성자에 의해 type=""이 되므로 WHERE절 안걸리고 그냥 검색 -->
+        <if test="type =='title'">
+            WHERE title LIKE CONCAT('%',#{keyword},'%')
+        </if>
+        <if test="type =='content'">
+            WHERE content LIKE CONCAT('%',#{keyword},'%')
+        </if>
+        <if test="type =='tc'">
+            WHERE title LIKE CONCAT('%',#{keyword},'%')
+                OR content LIKE CONCAT('%',#{keyword},'%')
+        </if>
         ORDER BY board_no DESC
         LIMIT #{pageStart},#{amount}
 <!-- pageStart : 이거 getpageStart()
@@ -50,6 +61,17 @@
     </update>
 
     <select id="count" resultType="int">
-        SELECT COUNT(*) FROM tbl_board;
+        SELECT COUNT(*)
+        FROM tbl_board
+        <if test="type =='title'">
+            WHERE title LIKE CONCAT('%',#{keyword},'%')
+        </if>
+        <if test="type =='content'">
+            WHERE content LIKE CONCAT('%',#{keyword},'%')
+        </if>
+        <if test="type =='tc'">
+            WHERE title LIKE CONCAT('%',#{keyword},'%')
+            OR content LIKE CONCAT('%',#{keyword},'%')
+        </if>
     </select>
 </mapper>

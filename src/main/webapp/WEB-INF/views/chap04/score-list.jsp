@@ -141,8 +141,8 @@
             window.location.href = '/'; // GET요청
         };
 
-        const $student=document.querySelector(".student-inform");
-        if(s.kor===100 || s.eng===100 || s.math===100 )
+        // const $student=document.querySelector(".student-inform");
+        // if(s.kor===100 || s.eng===100 || s.math===100 )
 
     </script>
 

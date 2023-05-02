@@ -49,11 +49,11 @@
                         ${s.shortContent}
                     </div>
             </section>
-                    <!-- 취소 버튼 -->
-                <div class="cancel-btn">
+                    <!-- 삭제 버튼 -->
+                <form action="/self/delete" method="post" class="cancel-btn" >
                     <button class="btn-bg">x</button>
                     <input type="hidden"  name="boardNo" value="${s.boardNo}">
-                </div>
+                </form>
             </div>
         </c:forEach>
     </div>
@@ -82,7 +82,7 @@
 
         $cancelBtn.addEventListener('click',e=>{
             console.log(e.target.closest(".card-wrapper").dataset.bno);
-            
+
         })
 
 

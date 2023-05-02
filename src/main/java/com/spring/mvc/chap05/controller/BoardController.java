@@ -4,6 +4,7 @@ import com.spring.mvc.chap05.dto.BoardListResponseDTO;
 import com.spring.mvc.chap05.dto.BoardWriteRequestDTO;
 import com.spring.mvc.chap05.dto.page.Page;
 import com.spring.mvc.chap05.dto.page.PageMaker;
+import com.spring.mvc.chap05.dto.page.Search;
 import com.spring.mvc.chap05.service.BoardService;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
@@ -26,7 +28,7 @@ public class BoardController {
 
     // 목록 조회 요청
     @GetMapping("/list")
-    public String list(Page page, Model model) {
+    public String list(Search page, Model model) {
         // Page : 기본 생성자 만들고, setter로 넣음
         log.info("/board/list : GET");
         log.info("page : {}",page);
@@ -34,10 +36,11 @@ public class BoardController {
                 = boardService.getList(page);
 
         //페이징 알고리즘 작동
-        PageMaker maker = new PageMaker(page,boardService.getCount());
+        PageMaker maker = new PageMaker(page,boardService.getCount(page));
         
         model.addAttribute("bList", responseDTOS);
         model.addAttribute("maker",maker); //페이징 정보를 줌
+        model.addAttribute("s",page);  //키워드 검색후 입력한 검색어 계속 남아있도록
 //        model.addAttribute("realEnd",maker.getRealEnd());
         return "chap05/list";
     }
@@ -67,9 +70,10 @@ public class BoardController {
 
     // 글 상세 조회 요청
     @GetMapping("/detail")
-    public String detail(int bno, Model model) {
+    public String detail(int bno, @ModelAttribute("s") Search search, Model model) {
         System.out.println("/board/detail : GET");
         model.addAttribute("b", boardService.getDetail(bno));
+//        model.addAttribute("s", search); //@ModelAttribute("s")이거 때문에 한줄 더 안 붙여도 됨
         return "chap05/detail";
     }
 
