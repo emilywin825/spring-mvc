@@ -23,7 +23,7 @@ public interface ReplyMapper {
 
     //댓글 목록 조희
     //파라미터 2개 이상인 경우 @param해서 이름 지정해주는 게 좋음
-    List<Reply> findAll(@Param("bn")long boardNom, @Param("p")Page page);
+    List<Reply> findAll(@Param("bn")long boardNo, @Param("p")Page page);
 
 
     //댓글 수 조회

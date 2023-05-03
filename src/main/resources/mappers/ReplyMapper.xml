@@ -32,7 +32,7 @@
     <select id="findAll" resultType="reply">
         SELECT reply_no, reply_text, reply_writer, reply_date, board_no
         FROM tbl_reply
-        WHERE board_no = #{boardNo}
+        WHERE board_no = #{bn}
         ORDER BY reply_no
         LIMIT #{p.pageStart}, #{p.amount}
 <!--  p.pageStart에서 p는 ReplyMapper에서 findAll(@Param("bn")long boardNom, @Param("p")Page page);에 붙은 이름      -->
