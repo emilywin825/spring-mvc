@@ -1,10 +1,12 @@
 package com.spring.mvc.chap05.dto.page;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @ToString
+@AllArgsConstructor
 public class Page {
 
     private int pageNo; //클라이언트가 보낸 페이지 번호
