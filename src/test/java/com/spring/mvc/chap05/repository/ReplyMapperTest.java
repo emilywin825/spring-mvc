@@ -1,5 +1,6 @@
 package com.spring.mvc.chap05.repository;
 
+import com.spring.mvc.chap05.dto.page.Page;
 import com.spring.mvc.chap05.dto.page.Search;
 import com.spring.mvc.chap05.entity.Board;
 import com.spring.mvc.chap05.entity.Reply;
@@ -11,6 +12,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.print.DocFlavor;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -96,6 +99,40 @@ class ReplyMapperTest {
         assertTrue(flag);
         assertEquals(1,replyMapper.count(boardNo));
     }
+
+    @Test
+    @DisplayName("999번 댓글의 내용을 수정한 후 " +
+            "다시 조회했을 때 제목이 수정된 제목이어야 한다.")
+    @Transactional @Rollback
+    void modifyTest() {
+        //given
+        long replyNo = 999L;
+        String newReplyText = "수정댓그을";
+        Reply r = Reply.builder()
+                .replyText(newReplyText)
+                .replyNo(replyNo)
+                .build();
+        //when
+        boolean flag = replyMapper.modify(r);
+        //then
+        assertTrue(flag);
+        assertEquals(newReplyText, replyMapper.findOne(replyNo).getReplyText());
+    }
+
+    @Test
+    @DisplayName("3번 게시물의 댓글 목록을 조회했을 때" +
+            "리스트의 크기가 4이고, " +
+            "0번 인덱스의 댓글작성자가 잼민이 69여야 한다.")
+    void findAllTest() {
+        //given
+        long boardNo = 3L;
+        //when
+        List<Reply> replyList = replyMapper.findAll(boardNo, new Page());
+        //then
+        assertEquals(4, replyList.size());
+        assertEquals("잼민이 69", replyList.get(0).getReplyWriter());
+    }
+
 
 
 

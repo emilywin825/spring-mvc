@@ -11,4 +11,9 @@ public class MapController {
     public String kakaoMap() {
         return "map";
     }
+
+    @GetMapping("/weather")
+    public String test() {
+        return "weather";
+    }
 }

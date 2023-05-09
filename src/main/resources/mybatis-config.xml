@@ -16,6 +16,8 @@
         <typeAlias alias="board" type="com.spring.mvc.chap05.entity.Board" />
         <typeAlias alias="self" type="com.spring.mvc.self.entity.Self" />
         <typeAlias alias="reply" type="com.spring.mvc.chap05.entity.Reply" />
+        <typeAlias alias="member" type="com.spring.mvc.chap05.entity.Member" />
+
     </typeAliases>
 
     <mappers>
@@ -26,5 +28,6 @@
         <mapper resource="mappers/BoardMapper.xml" />
         <mapper resource="mappers/SelfMapper.xml" />
         <mapper resource="mappers/ReplyMapper.xml" />
+        <mapper resource="mappers/MemberMapper.xml" />
     </mappers>
 </configuration>

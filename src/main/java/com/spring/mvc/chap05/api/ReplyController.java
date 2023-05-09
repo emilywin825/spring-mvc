@@ -1,6 +1,7 @@
 package com.spring.mvc.chap05.api;
 
 import com.spring.mvc.chap05.dto.ReplyListResponseDTO;
+import com.spring.mvc.chap05.dto.ReplyModifyRequestDTO;
 import com.spring.mvc.chap05.dto.ReplyPostRequestDTO;
 import com.spring.mvc.chap05.dto.page.Page;
 import com.spring.mvc.chap05.entity.Reply;
@@ -95,6 +96,29 @@ public class ReplyController {
             return ResponseEntity.internalServerError().body(e.getMessage());
         }
         //이 replyNo랑 위의   @DeleteMapping("/{replyNo}")랑 이름 같으면 @PathVariable("replyNo")의 replyNo안써도 됨
+    }
+
+    // 댓글 수정 요청
+    @RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH})
+    public ResponseEntity<?> modify(
+            @Validated @RequestBody ReplyModifyRequestDTO dto
+            , BindingResult result
+    ) {
+
+        if (result.hasErrors()) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(result.toString());
+        }
+
+        log.info("/api/v1/replies PUT!");
+        try {
+            ReplyListResponseDTO responseDTO = replyService.modify(dto);
+            return ResponseEntity.ok().body(responseDTO);
+        } catch (Exception e) {
+            log.warn("500 status code! caused by: {}", e.getMessage());
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
     }
 
 
