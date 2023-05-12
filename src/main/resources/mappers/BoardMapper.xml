@@ -11,7 +11,8 @@
                 title,
                 content,
                 view_count,
-                reg_date_time
+                reg_date_time,
+                account
         FROM tbl_board
 <!--   검색을 안하면 Search 클래스의 기본생성자에 의해 type=""이 되므로 WHERE절 안걸리고 그냥 검색 -->
         <if test="type =='title'">
@@ -33,19 +34,20 @@
     </select>
 
     <select id="findOne" resultType="board">
-        SELECT board_no,
-            title,
-            content,
-            view_count,
-            reg_date_time
-        FROM tbl_board
+        SELECT
+            B.board_no, B.title,
+            B.content, B.view_count, B.reg_date_time,
+            B.account, M.name AS writer
+        FROM tbl_board B
+        JOIN tbl_member M
+        ON B.account=M.account
         WHERE board_no=#{boardNo}
     </select>
 
     <insert id="save">
         INSERT INTO tbl_board
-            (title,content)
-        values (#{title},#{content})
+            (title,content,account)
+        values (#{title},#{content},#{account})
 <!-- title: 이거 getter        -->
     </insert>
 

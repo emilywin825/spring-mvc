@@ -21,7 +21,10 @@
 
         <div class="main-title-wrapper">
             <h1 class="main-title">꾸러기 게시판</h1>
-            <button class="add-btn">새 글 쓰기</button>
+
+            <c:if test="${login!=null}">
+                <button class="add-btn">새 글 쓰기</button>
+            </c:if>
         </div>
 
         <div class="top-section">
@@ -30,7 +33,7 @@
                 <form action="/board/list" method="get">
                     
                     <select class="form-select" name="type" id="search-type">
-                        <option value="title">제목</option>
+                        <option value="title">제목</option>+
                         <option value="content">내용</option>
                         <option value="writer">작성자</option>
                         <option value="tc">제목+내용</option>
@@ -69,11 +72,13 @@
                             
                         </div>
                     </section>
-                    <div class="card-btn-group">
-                        <button class="del-btn" data-href="/board/delete?bno=${b.boardNo}">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
+                    <c:if test="${login.account==b.account}">
+                        <div class="card-btn-group">
+                            <button class="del-btn" data-href="/board/delete?bno=${b.boardNo}">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </c:if>
                 </div>
             </c:forEach>
 
