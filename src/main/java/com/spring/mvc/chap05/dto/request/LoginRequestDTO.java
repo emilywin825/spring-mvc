@@ -1,4 +1,4 @@
-package com.spring.mvc.chap05.dto;
+package com.spring.mvc.chap05.dto.request;
 
 import lombok.*;
 import org.springframework.stereotype.Service;
@@ -10,5 +10,5 @@ import org.springframework.stereotype.Service;
 public class LoginRequestDTO {
     private String account;
     private String password;
-    private String autoLogin;
+    private boolean autoLogin;
 }
