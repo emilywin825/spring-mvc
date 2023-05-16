@@ -28,5 +28,6 @@ public class Member {
     private Auth auth;
     private LocalDateTime regDate;
     private LocalDateTime limitTime;
+    private String profileImg; //프로필 이미지 경로
 
 }

@@ -42,7 +42,7 @@ public class RestApiController {
                                     ,@RequestParam(required = false) Double kg){
         if(cm==null || kg==null){
 //            return ResponseEntity.status(401).build(); //응답 코드 커스텀
-            return ResponseEntity.badRequest().body("키랑 몸무게 보내"); //응답 코드 커스텀
+            return ResponseEntity.badRequest().body("키랑 몸무게 보내"); //응답 코드 커스텀 -> 요청 잘 못보냈어?(cm,kg 잘목보냄) 그럼 400번
 
         }
         double bmi=kg/(cm/100) * cm/100;
@@ -50,6 +50,6 @@ public class RestApiController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("fruits","melon");
         headers.add("hobby","soccer");
-        return ResponseEntity.ok().headers(headers).body(bmi);
+        return ResponseEntity.ok().headers(headers).body(bmi); //만약 요청 잘 왔어? -> ok()로(200번대)응답하고, bmi 보내줄게
     }
 }
