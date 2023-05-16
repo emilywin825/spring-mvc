@@ -50,9 +50,9 @@ public class MemberController {
     @GetMapping("/check")
     @ResponseBody
     public ResponseEntity<?> check(String type, String keyword){
-        log.info("/memebers/check?type={}&keyword={} ASYNC GET!",type,keyword);
+        log.info("/memebers/c heck?type={}&keyword={} ASYNC GET!",type,keyword);
         boolean flag=memberService.checkSignUpValue(type,keyword);
-        return ResponseEntity.ok().body(flag);
+        return ResponseEntity.ok().body(flag); // Spring에서 HTTP 응답을 나타내는 방법 중 하나
     }
 
     //로그인 양식 요청
@@ -74,18 +74,23 @@ public class MemberController {
                          // RedirectAttributes : 리다이렉션시 2번째 응답에 데이터를 보내기 위함
             , RedirectAttributes ra
             , HttpServletResponse response,
-              HttpServletRequest request) {
-        log.info("/members/sign-in POST ! - {}", dto);
+        HttpServletRequest request) {
+            log.info("/members/sign-in POST ! - {}", dto);
 
-        LoginResult result = memberService.authenticate(dto,request.getSession(),response);
+            LoginResult result = memberService.authenticate(dto,request.getSession(),response);
 
         // 로그인 성공시
         if (result == SUCESS) {
 
             //서버에서 세션에 로그인 정보를 저장
+/*          HttpSession session=request.getSession();
+            로그인이 성공하면 session값이 생김
+            session.setAttribute("login","메롱");
+            -> 이렇게하면 controller가 싫어해... service가 하도록해야함
+            */
             memberService.maintainLoginState(
+//                  request.getSession() : 세션을 보냄
                     request.getSession(), dto.getAccount());
-
 /*//            쿠키의 값으로는 String만 가능
             //쿠키 만들기
             Cookie loginCookie = new Cookie("login","홍길동");
@@ -112,6 +117,9 @@ public class MemberController {
             HttpServletRequest request,
             HttpServletResponse response){ //스프링에서 session 정보를 가져옴
 
+//      브라우저별로 만들어진 session 객체를 가져옴
+//        이렇게 받아도 되고, 매개변수에 signOut(HttpSession session) 이렇게 작성하면
+//        spring에서 알아서 넣어줌
         HttpSession session = request.getSession();
 
         //로그인 중인지 확인
@@ -125,7 +133,7 @@ public class MemberController {
             //세션에서 login정보를 제거
             session.removeAttribute("login");
 
-            //세션을 아예 초기화(세션만료 시간)
+            //세션을 아예 초기화(세션만료 시간) -> 해주는게 좋음
             session.invalidate();
             return "redirect:/";
         }

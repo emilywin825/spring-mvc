@@ -50,7 +50,6 @@ public class MemberService {
         int flagNum = memberMapper.isDuplicate(type, keyword);
 
         return flagNum==1; //flagNum이 1이면 true,flagNum이 0이면 false
-
     }
 
     //로그인 검증
@@ -94,22 +93,21 @@ public class MemberService {
                             .limitTime(LocalDateTime.now().plusDays(90))
                             .build()
             );
-
         }
         
         return SUCESS;
     }
 
-    public void maintainLoginState(HttpSession session, String account) {
+    public void maintainLoginState(HttpSession session, String account) { //account : 계정 달라고 해서
         // 로그인이 성공하면 세션에 로그인한 회원의 정보들을 저장
         /*
-            로그인시 클라이언트에게 전달할 회원정보
-            ex) 닉네임, 프로필사진, 마지막 로그인 시간
+            로그인시 클라이언트에게 전달할 회원정보(화면에 뿌릴 데이터)
+            ex) 닉네임, 프로필사진, 마지막 로 그인 시간
          */
-        // 현재 로그인한 사람의 모든 정보
+        // 현재 로그인한 사람의 모든 정보 (db에 있는 모든 정보)
         Member member = getMember(account);
 
-        // 현재 로그인한 사람의 화면에 보여줄 일부정보 : dto
+        // dto : 현재 로그인한 사람의 화면에 보여줄 일부정보
         LoginUserResponseDTO dto = LoginUserResponseDTO.builder()
                 .account(member.getAccount())
                 .nickName(member.getName())

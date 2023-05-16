@@ -35,7 +35,7 @@ public class BoardController {
 
         /*boolean flag=false;
 
-        //세션을 확인
+        //세션을 확인 -> 세션이 있으면 밑에 페이징 알고리즘 작동
         Object login = request.getSession().getAttribute("login");
 
         if(login!=null) flag=true;*/
@@ -48,6 +48,7 @@ public class BoardController {
 //                break;
 //            }
 //        }
+//        세션 없으면 redirect
 //        if (!flag) return "redirect:/members/sign-in";
 
         // Page : 기본 생성자 만들고, setter로 넣음

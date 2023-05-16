@@ -26,6 +26,13 @@
             <li><a href="/board/list">Board</a></li>
             <li><a href="#">Contact</a></li>
             
+            <!-- sessionScope.login를 login이라고 써도 되는데 이 경우 
+                 model에 있는 login 먼저 사용하고, model에 login없으면 session꺼 사용
+                    model.addAttribute("abc","aaa");
+                    session.addAttribute("abc","bbb");
+                    이렇게 있을 때 jsp에서 ${abc}이렇게 작성하면 model이 먼저 우선순위 
+                    session.scope.abc 이렇게 작성하면 session께 나옴
+                    만약 model은 없고 session만 있다면 session꺼 나옴-->
             <c:if test="${sessionScope.login ==null }">
                 <li><a href="/members/sign-up">Sign Up</a></li>
                 <li><a href="/members/sign-in">Sign In</a></li>

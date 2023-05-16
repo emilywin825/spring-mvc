@@ -6,6 +6,8 @@
 <mapper namespace="com.spring.mvc.chap05.repository.BoardMapper">
 
     <!--mybatis-config.xml에서 설정해놔서 resultType="board" -->
+    <!-- resultType : 구문의 결과를 받을 alias나 풀 클래스명-->
+
     <select id="findAll" resultType="board">
         SELECT board_no,
                 title,

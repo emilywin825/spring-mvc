@@ -23,7 +23,7 @@
 
     <%@ include file="include/header.jsp" %>    
     <!-- sessionScope.login==null :  로그인 안했음 -->
-    <!--  ${sessionScope.login} === session.getATtribute("login") -->
+    <!--  ${sessionScope.login} === session.getATtribute("login") : LoginUserResponseDTO-->
 
     <h1 id="main-title">
         <%-- session.getAttribute("login") --%>

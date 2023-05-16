@@ -49,7 +49,7 @@ public class ScoreController {
 
     //1. 성적등록화면 띄위기 + 정보목록조회
     @GetMapping("/list")
-    public String list(Model model, @RequestParam(defaultValue = "num") String sort) {
+        public String list(Model model, @RequestParam(defaultValue = "num") String sort) {
         System.out.println("/score/list : GET");
         System.out.println("정렬 요구사항 : " + sort);
 

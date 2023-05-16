@@ -1,9 +1,10 @@
 package com.spring.mvc.chap05.api;
 
 import com.spring.mvc.chap05.dto.ReplyListResponseDTO;
+import com.spring.mvc.chap05.dto.page.Page;
 import com.spring.mvc.chap05.dto.request.ReplyModifyRequestDTO;
 import com.spring.mvc.chap05.dto.request.ReplyPostRequestDTO;
-import com.spring.mvc.chap05.dto.page.Page;
+import com.spring.mvc.chap05.entity.Reply;
 import com.spring.mvc.chap05.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.SQLException;
+import java.util.List;
 
 import static org.springframework.http.ResponseEntity.*;
 
@@ -40,7 +44,7 @@ public class ReplyController {
                 = replyService.getList(boardNo, page);//ssr 방식에서는 model에 담아서 보냈는데
 //      ok().body() : HTTP 응답을 나타내는 메소드 체인
 //      ok()는 HTTP 상태 코드 200을 나타내는 메소드이며, 요청이 성공적으로 처리되었음을 나타냄
-//      .body()는 HTTP 응답 본문을 설정하는 메소드. 이 메소드는 컨트롤러 메소드에서 반환된 객체를 HTTP 응답의 본문으로 설정
+//      .body()는 클라이언트에게 주고 싶은거
         return ok().body(replyList);//csr 방식에서는 그대로 json으로 보냄
     }
     

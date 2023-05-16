@@ -49,7 +49,9 @@ public class RestApiController {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("fruits","melon");
-        headers.add("hobby","soccer");
-        return ResponseEntity.ok().headers(headers).body(bmi);
+        headers.add("hobby","soccer"); //헤더에 추가적인 정보 담아서 클라이언트에게 전송
+        return ResponseEntity.ok()
+                .headers(headers) //헤더 추가
+                .body(bmi);
     }
 }
