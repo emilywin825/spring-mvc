@@ -7,7 +7,7 @@
     <insert id="save">
         INSERT INTO tbl_member
             (account, password, name, email, profile_img)
-<!--        profile_img추가ㅏㅏ-->
+<!--        profile_img추가-->
         VALUES
             (#{account},#{password},#{name},#{email},#{profileImage})
     </insert>
