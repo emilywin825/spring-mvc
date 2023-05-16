@@ -14,6 +14,30 @@
             margin-top: 200px;
             margin-bottom: 200px;
         }
+
+        .profile {
+            margin-bottom: 70px;
+            text-align: center;
+        }
+        .profile label {
+            font-weight: 700;
+            font-size: 1.2em;
+            cursor: pointer;
+            color: rgb(140, 217, 248);
+        }
+        .profile .thumbnail-box {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 30px auto 10px;
+            cursor: pointer;
+        }
+    
+        .profile .thumbnail-box img {
+            width: 200px;
+            height: 200px;
+        }
     </style>
 
 </head>
@@ -33,8 +57,24 @@
 
 
                         <form action="/members/sign-up" name="signup" id="signUpForm" method="post"
-                            style="margin-bottom: 0;">
+                            style="margin-bottom: 0;" enctype="multipart/form-data">
 
+                            <div class="profile">
+                                <div class="thumbnail-box">
+                                    <img src="/assets/img/image-add.png" alt="프로필 썸네일">
+                                </div>
+
+                                <label>프로필 이미지 추가</label>
+
+                                <!-- input에 파일이 들오면  <img src="/assets/img/image-add.png" alt="프로필 썸네일"> 여기 이미지가 바뀜-->
+                                <input 
+                                    type="file"
+                                    id="profile-img" 
+                                    accept="image/*"
+                                    style="display: none;"
+                                    name="profileImage"
+                                >
+                            </div>
 
                             <table style="cellpadding: 0; cellspacing: 0; margin: 0 auto; width: 100%">
                                 <tr>
@@ -202,7 +242,6 @@
         };
 
 
-        
 
         // 패스워드 확인란 입력값 검증
         const $pwCheckInput = document.getElementById('password_check');
@@ -225,7 +264,6 @@
                     checkResultList[2]=false;
 
             } else {
-
                 $pwCheckInput.style.borderColor = 'skyblue';
                 document.getElementById('pwChk2').innerHTML
                     = '<b style="color: skyblue;">[참 잘했어요~]</b>';
@@ -318,8 +356,38 @@
             } else{
                 alert('입력란을 다시확인하세요!');
             }
-        
+        };
+
+        //프로필 사진 관련 스크립트
+        const $profile = document.querySelector('.profile');
+        const $fileInput=document.getElementById('profile-img');
+
+        //프로필 추가 영역 클릭 이번트
+        $profile.onclick=e=>{
+            $fileInput.click();
         }
+
+        //프로필 사진 선택시 썸네일 이벤트
+        $fileInput.onchange=e=>{
+            //첨부한 파일의 데이터를 읽어오기
+            // 관리자 창에서 <input type="file" id="profile-img" accept="image/*" style="display: none;" name="profileImage">클릭후
+            //  Properties의 files  확인해보기
+            const fileData=$fileInput.files[0];
+            // console.log(fileData);
+
+            // 첨부파일의 바이트데이터를 읽어들이는 객체 생성
+            const reader=new FileReader();
+
+            // 파일의 바이트 데이터를 읽어서 ing태그의 src 속성이나 a태그의 href속성에 넣기 위한 형태로 읽음
+            // readAsDataURL : 파일을 읽는데 url 형태로 읽어라
+            reader.readAsDataURL(fileData);
+
+            // 첨부파일이 등록되는 순간 img태그에 이미지를 세팅
+            reader.onloadend = e => {
+                const $imgTag = document.querySelector('.thumbnail-box img');
+                $imgTag.setAttribute('src', reader.result);
+            };
+        };
 
 
 
