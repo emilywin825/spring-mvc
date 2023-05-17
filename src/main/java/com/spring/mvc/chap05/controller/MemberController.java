@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,11 +43,15 @@ public class MemberController {
     // 회원가입 처리 요청
     @PostMapping("/sign-up")
     public String signUp(SignUpRequestDTO dto) {
+        MultipartFile profileImage = dto.getProfileImage();
+
         log.info("/members/sign-up POST ! - {}", dto);
         log.info("프로필사진 이름 : {}", dto.getProfileImage().getOriginalFilename());
-
+        String savePath = null;
+        if (!profileImage.isEmpty()) { //MultipartFile은 null이여도 객체 생성 -> 프사 등록안해도 이상한 이미지 자동으로 들어감. 그거 방지
 //      실제 로컬 스토리에 파일을 업로드하는 로직
-        String savePath = FileUtil.uploadFile(dto.getProfileImage(), rootPath);
+            savePath = FileUtil.uploadFile(dto.getProfileImage(), rootPath);
+        }
 
         boolean flag=memberService.join(dto,savePath); //db에 들어가는 작업
 

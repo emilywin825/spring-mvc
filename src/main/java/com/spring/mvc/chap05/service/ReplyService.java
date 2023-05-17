@@ -6,8 +6,10 @@ import com.spring.mvc.chap05.dto.ReplyListResponseDTO;
 import com.spring.mvc.chap05.dto.request.ReplyPostRequestDTO;
 import com.spring.mvc.chap05.dto.page.Page;
 import com.spring.mvc.chap05.dto.page.PageMaker;
+import com.spring.mvc.chap05.dto.response.LoginUserResponseDTO;
 import com.spring.mvc.chap05.entity.Reply;
 import com.spring.mvc.chap05.repository.ReplyMapper;
+import com.spring.mvc.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -44,12 +47,17 @@ public class ReplyService {
     }
 
     //댓글 등록 서비스
-    public ReplyListResponseDTO register(final ReplyPostRequestDTO dto)
+    public ReplyListResponseDTO register(final ReplyPostRequestDTO dto, HttpSession session)
         throws SQLException{ //매개변수 데이터에 final : 매개변수 안전하게 지킬 수 있음
         log.debug("register service execute!");
     
         //dto를 entity로 변환
         Reply reply = dto.toEntity();
+
+        LoginUserResponseDTO member = (LoginUserResponseDTO) session.getAttribute(LoginUtil.LOGIN_KEY);
+        reply.setAccount(member.getAccount());
+        reply.setReplyWriter(member.getNickName());
+
         boolean flag = replyMapper.save(reply);
 
         // 예외 처리

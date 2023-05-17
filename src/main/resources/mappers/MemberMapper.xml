@@ -9,7 +9,7 @@
             (account, password, name, email, profile_img)
 <!--        profile_img추가-->
         VALUES
-            (#{account},#{password},#{name},#{email},#{profileImage})
+            (#{account},#{password},#{name},#{email},#{profileImg})
     </insert>
 
     <select id="findMember" resultType="member">
