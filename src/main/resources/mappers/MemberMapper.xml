@@ -6,10 +6,10 @@
 
     <insert id="save">
         INSERT INTO tbl_member
-            (account, password, name, email, profile_img)
+            (account, password, name, email, profile_img,login_method)
 <!--        profile_img추가-->
         VALUES
-            (#{account},#{password},#{name},#{email},#{profileImg})
+            (#{account},#{password},#{name},#{email},#{profileImg},#{loginMethod})
     </insert>
 
     <select id="findMember" resultType="member">
